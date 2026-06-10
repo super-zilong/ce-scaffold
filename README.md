@@ -13,6 +13,33 @@ a thin orchestrator. The whole thing is built on one principle:
 > `docs/engineering-rules.md`, which **both** agents read — so each round makes the next
 > one easier (the "compound" in compound engineering).
 
+## Quickstart (clone and go)
+
+This repo is a **template** — clone it as the starting point for a new project, then
+drive your first feature through the loop.
+
+```bash
+git clone https://github.com/super-zilong/ce-scaffold.git my-project
+cd my-project
+```
+
+Then, in **Claude Code** (or Pi — same command names on both):
+
+```
+/ce-plan 001-my-feature   add a /health route returning build info
+/ce-work 001-my-feature                 # implement from the spec (run in either agent)
+/ce-review 001-my-feature               # in a FRESH session — judges spec vs. diff, then
+                                        #   chains /ce-compound on PASS
+```
+
+That's the whole loop: **plan → work → review → compound**. State passes only through the
+files under `spec/001-my-feature/` (copied from `spec/_template/`), so any agent can pick up
+any phase. To change a requirement later, run `/ce-plan 001-my-feature --revise "<change>"`.
+
+> **First time here?** Read [`CLAUDE.md`](CLAUDE.md) (Claude Code) or [`AGENTS.md`](AGENTS.md)
+> (Pi) for the phase-neutral brief, and [`docs/engineering-rules.md`](docs/engineering-rules.md)
+> for the shared rules both agents obey.
+
 ## Layout
 
 ```
